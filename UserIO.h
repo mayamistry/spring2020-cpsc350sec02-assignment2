@@ -9,7 +9,8 @@ class UserIO {
     UserIO();
     //overloaded constructor not needed
     ~UserIO();
-    void promptForFileOrRandom();
-    GameMode promptBoundary();
+    void start();
+    GenerateBoard* promptForFileOrRandom();
+    GameMode* promptBoundary(GenerateBoard *b);
     void promptForSimulationType(); //pause, enter, or output file
 };

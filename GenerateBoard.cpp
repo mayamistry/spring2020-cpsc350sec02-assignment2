@@ -4,41 +4,63 @@
 GenerateBoard::GenerateBoard() {
   m_height = 10;
   m_width = 10;
+  m_density = 0.0;
 }
 
 //overloaded constructor
-GenerateBoard::GenerateBoard(int h, int w) {
+GenerateBoard::GenerateBoard(int h, int w, float d) {
   m_height = h;
   m_width = w;
+  m_density = d;
 }
 
 //copy constructor
-GenerateBoard::GenerateBoard(GenerateBoard b) {
-  m_height = b->getHeight();
-  m_width  = b->getWidth();
-}
+// GenerateBoard::GenerateBoard(const GenerateBoard& b) {
+//   m_height = &b->getHeight();
+//   m_width  = &b->getWidth();
+//   m_density = &b->getDensity();
+// }
 
 GenerateBoard::~GenerateBoard() {
    delete board;
 }
 
-GenerateBoard::setHeight(int h) {
+void GenerateBoard::setHeight(int h) {
   m_height = h;
 }
 
-GenerateBoard::setWidth(int w) {
-  m_widht = w;
+void GenerateBoard::setWidth(int w) {
+  m_width = w;
 }
 
-GenerateBoard::getHeight() {
+int GenerateBoard::getHeight() {
   return m_height;
 }
 
-GenerateBoard::getWidth() {
+int GenerateBoard::getWidth() {
   return m_width;
 }
 
-GenerateBoard::createFromFile(string fileName) {
+void GenerateBoard::setDensity(float d) {
+  m_density = d;
+}
+
+float GenerateBoard::getDensity() {
+  return m_density;
+}
+
+int** GenerateBoard::getBoard(){
+  return board;
+}
+
+void GenerateBoard::initializeBoard(int h, int w) {
+  board = new int*[w];
+  for (int i = 0; i < w; ++i) {
+    board[i] = new int[h];
+  }
+}
+
+void GenerateBoard::createFromFile(string fileName) {
   ifstream inFS;
   string currentLine = "";
   int lineCount = 1;
@@ -48,7 +70,7 @@ GenerateBoard::createFromFile(string fileName) {
   //check if the file can be opened
   if (!inFS.is_open()) {
     cout << "Could not open file." << endl;
-    return 1;
+    // return 1; figure out how to do later
   }
 
   //start reading the file
@@ -60,13 +82,13 @@ GenerateBoard::createFromFile(string fileName) {
         m_height = stoi(currentLine); //convert from string to int
       } else if (lineCount = 2) {
         m_width = stoi(currentLine); //convert from string to int
-        board = new board[m_height][m_width];
+        initializeBoard(m_height,m_width);
       } else {
         for (int i = 0; i < m_width; ++i) {
           for (int j = 0; j < m_height; ++j) {
-            if (currentLine == '-') {
+            if (currentLine == "-") {
               board[i][j] = 0;
-            } else if (currentLine == 'X'){
+            } else if (currentLine == "X"){
               board[i][j] = 1;
             }
           }
@@ -77,8 +99,8 @@ GenerateBoard::createFromFile(string fileName) {
   }
 }
 
-GenerateBoard::createRandom(int h, int w, float randDecimal) {
-  board = new board[h][w];
+void GenerateBoard::createRandom(int h, int w, float randDecimal) {
+  initializeBoard(h,w);
   int totalBoxes = h * w;
   int density  = (int)randDecimal * totalBoxes;
   int currentCell = 0;

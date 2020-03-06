@@ -5,4 +5,4 @@ class DonutMode {
   public:
 
   private:
-}
+};
