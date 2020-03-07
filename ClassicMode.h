@@ -2,12 +2,18 @@
 
 class ClassicMode : public GameMode{
   public:
-    ClassicMode();
-    ClassicMode(GenerateBoard *b);
-    int countNumMeighbors(int cell);
-    int nextGenStatus(int numNeighbors);
+    ClassicMode() : GameMode(){m_classicBoard = NULL; board = NULL;}
+    ClassicMode(GenerateBoard *b) : GameMode(b){
+      m_board = b;
+      board = b->getBoard();
+    }
+    ~ClassicMode();
+    int countNumMeighbors(int i, int j, int rows, int cols);
+    int nextGenStatus(int previousStatus, int numNeighbors);
 
     //helper functions
-  private:
-    GenerateBoard *board;
+    void iterateThroughBoard();
+
+    GenerateBoard *m_classicBoard;
+    int **board;
 };

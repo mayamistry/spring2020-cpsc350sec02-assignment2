@@ -4,12 +4,14 @@ UserIO::UserIO() {
   //what happens here??
 }
 
-// UserIO::~UserIO() { // figure out later
-//   delete; //what happens here???
-// }
+UserIO::~UserIO() { // figure out later
+  delete m_board;
+  delete m_gameMode;
+}
 
 void UserIO::start(){
-  GameMode *gameMode = promptBoundary(promptForFileOrRandom());
+  m_board = promptForFileOrRandom();
+  m_gameMode = promptBoundary(m_board);
 }
 
 GenerateBoard* UserIO::promptForFileOrRandom() {
@@ -55,15 +57,15 @@ GameMode* UserIO::promptBoundary(GenerateBoard *b) { //maybe pass in grid for th
   //do error handling
   string input = "";
   cin >> input;
+  GameMode *g;
   if (input == "classic") {
-    ClassicMode *mode = new ClassicMode(b); //enter parameters -> maybe the grid
+    g = new ClassicMode(b); //enter parameters -> maybe the grid
   }
   // } else if (input == "mirror") {
   //   g = new MirrorMode(b);
   // } else if (input == "donut") {
   //   g = new DonutMode(b);
   // }
-  GameMode *g = mode;
   return g;
 }
 
