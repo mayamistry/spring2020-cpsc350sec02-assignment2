@@ -1,17 +1,18 @@
 #include "UserIO.h"
 
 UserIO::UserIO() {
-  //what happens here??
+  m_board = NULL;
+  m_modeInput = "";
+  m_playType = "";
 }
 
 UserIO::~UserIO() { // figure out later
   delete m_board;
-  delete m_gameMode;
 }
 
 void UserIO::start(){
   m_board = promptForFileOrRandom();
-  m_gameMode = promptBoundary(m_board);
+  m_modeInput = promptBoundary(m_board);
 }
 
 GenerateBoard* UserIO::promptForFileOrRandom() {
@@ -52,26 +53,29 @@ GenerateBoard* UserIO::promptForFileOrRandom() {
 }
 
 //2. Ask the user what boundary mode they want to run in
-GameMode* UserIO::promptBoundary(GenerateBoard *b) { //maybe pass in grid for this function
-  cout << "Choose the boundary mode you want to use: (Enter 'classic', 'mirror', or 'donut')" << endl;
+string UserIO::promptBoundary(GenerateBoard *b) { //maybe pass in grid for this function
+  cout << "Choose the boundary mode you want to use: (Enter '1' for classic, '2' for mirror, or '3' for donut)" << endl;
   //do error handling
   string input = "";
   cin >> input;
-  GameMode *g;
-  if (input == "classic") {
-    g = new ClassicMode(b); //enter parameters -> maybe the grid
-  }
-  // } else if (input == "mirror") {
-  //   g = new MirrorMode(b);
-  // } else if (input == "donut") {
-  //   g = new DonutMode(b);
-  // }
-  return g;
+  return input;
 }
 
 
 
   //3. Ask user if they want a brief pause, want to press enter, or output everything to an output file
-  void UserIO::promptForSimulationType() {
+string UserIO::promptForSimulationType() {
+  return m_playType;
+}
 
-  }
+GenerateBoard* UserIO::getBoard() {
+  return m_board;
+}
+
+string UserIO::getGameMode() {
+  return m_modeInput;
+}
+
+string UserIO::getPlayType(){
+  return m_playType;
+}

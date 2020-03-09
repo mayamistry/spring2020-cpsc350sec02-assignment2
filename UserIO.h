@@ -1,5 +1,6 @@
 #include <iostream>
-#include "GameMode.h"
+#include <math.h>
+#include "SimulateGame.h"
 
 using namespace std;
 
@@ -10,9 +11,14 @@ class UserIO {
     ~UserIO();
     void start();
     GenerateBoard* promptForFileOrRandom();
-    GameMode* promptBoundary(GenerateBoard *b);
-    void promptForSimulationType(); //pause, enter, or output file
+    string promptBoundary(GenerateBoard *b);
+    string promptForSimulationType(); //pause, enter, or output file
+
+    GenerateBoard* getBoard();
+    string getGameMode();
+    string getPlayType();
 
     GenerateBoard *m_board;
-    GameMode *m_gameMode;
+    string m_modeInput;
+    string m_playType;
 };

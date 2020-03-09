@@ -1,8 +1,17 @@
-#include <iostream>
-using namespace std;
+#include "GameMode.h"
 
-class MirrorMode {
+class MirrorMode : public GameMode{
   public:
-      MirrorMode();
-  private:
+    MirrorMode();
+    MirrorMode(GenerateBoard *b);
+    ~MirrorMode();
+    int countNumNeighbors(int i, int j, int rows, int cols, int** b);
+    int nextGenStatus(int previousStatus, int numNeighbors);
+
+    //helper functions
+    void iterateThroughBoard();
+    //other extra methods for donut
+
+    GenerateBoard *m_classicBoard;
+    int **m_board;
 };

@@ -6,3 +6,4 @@ A lot of work was done on one computer together
 Zybooks
 
 https://stackoverflow.com/questions/8617683/return-a-2d-array-from-a-function
+http://www.cplusplus.com/doc/tutorial/polymorphism/
