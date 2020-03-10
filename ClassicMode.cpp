@@ -19,9 +19,12 @@ void ClassicMode::iterateThroughBoard(GenerateBoard *b) {
   int cols = 0;
   cols = b->getWidth();
   int **current = b->getBoard();
+
+  int neighborCount = 0;
   for (int i = 0; i < rows; ++i) {
     for (int j = 0; j < cols; ++j) {
-      current[i][j] = 0;
+      neighborCount = countNumNeighbors(i,j,rows,cols,current); //SEGMENTATION FAULT
+      cout << neighborCount;
     }
   }
 
@@ -40,27 +43,21 @@ void ClassicMode::iterateThroughBoard(GenerateBoard *b) {
   //   deferencedArray[i] = new int[cols];
   // }
 
-
-
-  int newCell = 0;
-  int temp = 0;
-  int value = 0;
-  int neighborCount = 0;
-  for (int i = 0; i < rows; ++i) {
-    for (int j = 0; j < cols; ++j) {
-      temp = current[i][j]; //SEGMENTATION FAULT OCCURS HERE
-      cout << temp;
-      value = temp;
-      cout << "Error check";
-      current[i][j] = value;
-      neighborCount = countNumNeighbors(i, j, rows, cols, current);
-      newCell = nextGenStatus(value, neighborCount);
-      future[i][j] = newCell;
-    }
-  }
+  // int newCell = 0;
+  // int value = 0;
+  // int neighborCount = 0;
+  // for (int i = 0; i < rows; ++i) {
+  //   for (int j = 0; j < cols; ++j) {
+  //     current[i][j] = value;
+  //     cout << value << endl;
+  //     neighborCount = countNumNeighbors(i, j, rows, cols, b);
+  //     newCell = nextGenStatus(value, neighborCount);
+  //     // future[i][j] = newCell;
+  //   }
+  // }
 }
 
-int ClassicMode::countNumNeighbors(int i, int j, int rows, int cols, int **currentBoard) {
+int ClassicMode::countNumNeighbors(int i, int j, int rows, int cols, int**currentBoard) {
   int numNeighbors = 0;
   //special case:corners:
   if (i == 0 || j == 0 || i == rows - 1 || j == cols - 1) {
