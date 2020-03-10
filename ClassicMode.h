@@ -9,8 +9,7 @@ class ClassicMode : public GameMode{
     int nextGenStatus(int previousStatus, int numNeighbors);
 
     //helper functions
-    void iterateThroughBoard();
+    void iterateThroughBoard(GenerateBoard *b);
 
     GenerateBoard *m_classicBoard;
-    int **m_board;
 };

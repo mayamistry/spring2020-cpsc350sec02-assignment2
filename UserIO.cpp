@@ -12,7 +12,8 @@ UserIO::~UserIO() { // figure out later
 
 void UserIO::start(){
   m_board = promptForFileOrRandom();
-  m_modeInput = promptBoundary(m_board);
+  m_modeInput = promptBoundary();
+  m_playType = promptForSimulationType();
 }
 
 GenerateBoard* UserIO::promptForFileOrRandom() {
@@ -56,7 +57,7 @@ GenerateBoard* UserIO::promptForFileOrRandom() {
 }
 
 //2. Ask the user what boundary mode they want to run in
-string UserIO::promptBoundary(GenerateBoard *b) { //maybe pass in grid for this function
+string UserIO::promptBoundary() {
   cout << "Choose the boundary mode you want to use: (Enter '1' for classic, '2' for mirror, or '3' for donut)" << endl;
   //do error handling
   string input = "";
@@ -68,7 +69,11 @@ string UserIO::promptBoundary(GenerateBoard *b) { //maybe pass in grid for this 
 
   //3. Ask user if they want a brief pause, want to press enter, or output everything to an output file
 string UserIO::promptForSimulationType() {
-  return m_playType;
+  cout << "Choose if you want to simulate using a pause (Enter '1'), pressing enter (Enter '2'), or output everyhting to a file ('Enter '3'): " << endl;
+  //do error handling
+  string input = "";
+  cin >> input;
+  return input;
 }
 
 GenerateBoard* UserIO::getBoard() {

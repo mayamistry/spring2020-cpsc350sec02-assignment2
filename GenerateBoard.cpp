@@ -100,13 +100,6 @@ void GenerateBoard::createFromFile(string fileName) {
     }
     ++lineCount;
   }
-
-  for (int i = 0; i < m_height; ++i) {
-    for (int j = 0; j < m_width; ++j) {
-      cout << board[i][j];
-    }
-    cout << endl;
-  }
 }
 
 void GenerateBoard::createRandom(int h, int w, float randDecimal) {

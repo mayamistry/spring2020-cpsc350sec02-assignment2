@@ -11,7 +11,7 @@ class UserIO {
     ~UserIO();
     void start();
     GenerateBoard* promptForFileOrRandom();
-    string promptBoundary(GenerateBoard *b);
+    string promptBoundary();
     string promptForSimulationType(); //pause, enter, or output file
 
     GenerateBoard* getBoard();

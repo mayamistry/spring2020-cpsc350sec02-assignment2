@@ -3,11 +3,17 @@
 SimulateGame::SimulateGame() {
   m_board = NULL;
   m_mode = "";
+  m_genCount = 0;
 }
 SimulateGame::SimulateGame(GenerateBoard *b, string mode, string playType){
   m_board = b;
   m_mode = mode;
   m_playType = playType;
+  m_genCount = 0;
+  m_mainBoard = b->getBoard();
+  m_height = b->getHeight();
+  m_width = b->getWidth();
+  m_futureBoard = NULL;
 }
 SimulateGame::~SimulateGame(){
   delete m_board;
@@ -52,7 +58,15 @@ void SimulateGame::playWithOutputFile() {
 }
 
 void SimulateGame::playClassic(ClassicMode *c) {
-
+  //play
+  //first print what genertation 0 is
+  cout << "-----------------------------------------------------";
+  cout << endl;
+  cout << "START OF GAME OF LIFE: " << endl;
+  cout << "Generation #: " << m_genCount << endl;
+  printBoard();
+  cout << endl;
+  c->iterateThroughBoard(m_board);
 }
 
 void SimulateGame::playMirror(MirrorMode *m) {
@@ -61,6 +75,20 @@ void SimulateGame::playMirror(MirrorMode *m) {
 
 void SimulateGame::playDonut(DonutMode *d) {
 
+}
+
+void SimulateGame::printBoard() {
+  for (int i = 0; i < m_height; ++i) {
+    for (int j = 0; j < m_width; ++j) {
+      int cell = m_mainBoard[i][j];
+      if (cell == 0) {
+        cout << "-";
+      } else if (cell == 1) {
+        cout << "X";
+      }
+    }
+    cout << endl;
+  }
 }
 
 //make helper methods here

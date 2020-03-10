@@ -2,38 +2,60 @@
 
 ClassicMode::ClassicMode() {
   m_classicBoard = NULL;
-  m_board = NULL;
 }
 
 ClassicMode::ClassicMode(GenerateBoard *b) {
   m_classicBoard = b;
-  m_board = b->getBoard();
 }
 
 ClassicMode::~ClassicMode(){
-  delete m_board;
+  delete m_classicBoard;
 }
 
-void ClassicMode::iterateThroughBoard() {
+void ClassicMode::iterateThroughBoard(GenerateBoard *b) {
   //dereference the board to get the 2d array
   int rows = 0;
-  rows =  m_classicBoard->getWidth();
+  rows =  b->getHeight();
   int cols = 0;
-  cols = m_classicBoard->getHeight();
-  m_board = m_classicBoard->getBoard();
+  cols = b->getWidth();
+  int **current = b->getBoard();
+  for (int i = 0; i < rows; ++i) {
+    for (int j = 0; j < cols; ++j) {
+      current[i][j] = 0;
+    }
+  }
 
-  int deferencedArray [rows][cols];
+  // current = m_classicBoard->getBoard();
 
-  int temp;
+  // // current = m_classicBoard->getBoard(); //SEGMENTATION FAULT OCCURS HERE
+  // for (int i = 0; i < rows; ++i) {
+  //   for (int j = 0; j < cols; ++j) {
+  //     current
+  //   }
+  // }
+  //
+  // //did wrong at first and stored on stack, now stored on heap
+  // int** deferencedArray = new int* [rows];
+  // for (int i = 0; i < rows; ++i){
+  //   deferencedArray[i] = new int[cols];
+  // }
+
+
+
+  int newCell = 0;
+  int temp = 0;
   int value = 0;
   int neighborCount = 0;
   for (int i = 0; i < rows; ++i) {
     for (int j = 0; j < cols; ++j) {
-      temp = m_board[i][j];
+      temp = current[i][j]; //SEGMENTATION FAULT OCCURS HERE
+      cout << temp;
       value = temp;
-      deferencedArray[i][j] = value;
-      neighborCount = countNumNeighbors(i, j, rows, cols, m_board);
-      nextGenStatus(value, neighborCount);
+      cout << "Error check";
+      current[i][j] = value;
+      neighborCount = countNumNeighbors(i, j, rows, cols, current);
+      newCell = nextGenStatus(value, neighborCount);
+      future[i][j] = newCell;
     }
   }
 }
@@ -50,7 +72,7 @@ int ClassicMode::countNumNeighbors(int i, int j, int rows, int cols, int **curre
       if (currentBoard[i+1][j] == 1) {
         ++numNeighbors;
       }
-      if (currentBoard[i+1][j+1]) {
+      if (currentBoard[i+1][j+1] == 1) {
         ++numNeighbors;
       }
     }
@@ -62,7 +84,7 @@ int ClassicMode::countNumNeighbors(int i, int j, int rows, int cols, int **curre
       if (currentBoard[i+1][j-1] == 1) {
         ++numNeighbors;
       }
-      if (currentBoard[i+1][j]) {
+      if (currentBoard[i+1][j] == 1) {
         ++numNeighbors;
       }
     }
@@ -74,7 +96,7 @@ int ClassicMode::countNumNeighbors(int i, int j, int rows, int cols, int **curre
       if (currentBoard[i - 1][j + 1] == 1) {
         ++numNeighbors;
       }
-      if (currentBoard[i][j+1]) {
+      if (currentBoard[i][j+1] == 1) {
         ++numNeighbors;
       }
     }
@@ -86,7 +108,7 @@ int ClassicMode::countNumNeighbors(int i, int j, int rows, int cols, int **curre
       if (currentBoard[i - 1][j - 1] == 1) {
         ++numNeighbors;
       }
-      if (currentBoard[i - 1][j]) {
+      if (currentBoard[i - 1][j] == 1) {
         ++numNeighbors;
       }
     }
@@ -188,6 +210,7 @@ int ClassicMode::countNumNeighbors(int i, int j, int rows, int cols, int **curre
       ++numNeighbors;
     }
   }
+
   return numNeighbors;
 }
 
