@@ -5,11 +5,11 @@ class ClassicMode : public GameMode{
     ClassicMode();
     ClassicMode(GenerateBoard *b);
     ~ClassicMode();
-    int countNumNeighbors(int i, int j, int rows, int cols, int **currentBoard);
+    int countNumNeighbors(int i, int j, int rows, int cols, GenerateBoard *b);
     int nextGenStatus(int previousStatus, int numNeighbors);
 
     //helper functions
-    void iterateThroughBoard(GenerateBoard *b);
+    int ** iterateThroughBoard(GenerateBoard *b);
 
     GenerateBoard *m_classicBoard;
 };

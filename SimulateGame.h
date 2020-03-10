@@ -19,7 +19,7 @@ public:
   void playDonut(DonutMode *d);
 
   //add other helper methods here
-  void printBoard();
+  void printBoard(int**array, int h, int w);
 
   GenerateBoard* m_board;
   int **m_mainBoard; //main board to show current generations

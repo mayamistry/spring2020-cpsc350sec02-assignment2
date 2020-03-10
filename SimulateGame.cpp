@@ -63,10 +63,14 @@ void SimulateGame::playClassic(ClassicMode *c) {
   cout << "-----------------------------------------------------";
   cout << endl;
   cout << "START OF GAME OF LIFE: " << endl;
+
   cout << "Generation #: " << m_genCount << endl;
-  printBoard();
+  printBoard(m_mainBoard, m_height, m_width);
   cout << endl;
-  c->iterateThroughBoard(m_board);
+  m_futureBoard = c->iterateThroughBoard(m_board);
+  cout << endl;
+  m_genCount++;
+  printBoard(m_futureBoard, m_height, m_width);
 }
 
 void SimulateGame::playMirror(MirrorMode *m) {
@@ -77,7 +81,7 @@ void SimulateGame::playDonut(DonutMode *d) {
 
 }
 
-void SimulateGame::printBoard() {
+void SimulateGame::printBoard(int**array, int h, int w) {
   for (int i = 0; i < m_height; ++i) {
     for (int j = 0; j < m_width; ++j) {
       int cell = m_mainBoard[i][j];
