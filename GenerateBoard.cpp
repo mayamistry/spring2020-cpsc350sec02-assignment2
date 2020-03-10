@@ -54,9 +54,9 @@ int** GenerateBoard::getBoard(){
 }
 
 void GenerateBoard::initializeBoard(int h, int w) {
-  board = new int*[w];
-  for (int i = 0; i < w; ++i) {
-    board[i] = new int[h];
+  board = new int*[h];
+  for (int i = 0; i < h; ++i) {
+    board[i] = new int[w];
   }
 }
 
@@ -64,13 +64,14 @@ void GenerateBoard::createFromFile(string fileName) {
   ifstream inFS;
   string currentLine = "";
   int lineCount = 1;
+  int i = 0;
 
   inFS.open(fileName);
 
   //check if the file can be opened
   if (!inFS.is_open()) {
-    cout << "Could not open file." << endl;
-    // return 1; figure out how to do later
+    cout << "Could not open file. Start program over." << endl;
+    // return;
   }
 
   //start reading the file
@@ -78,36 +79,46 @@ void GenerateBoard::createFromFile(string fileName) {
     //specifically read the first two lines of the file to get dimensions
     inFS >> currentLine;
     if (!inFS.fail()){
-      if (lineCount = 1) {
+      if (lineCount == 1) {
         m_height = stoi(currentLine); //convert from string to int
-      } else if (lineCount = 2) {
+        cout << "Height: " << m_height << endl;
+      } else if (lineCount == 2) {
         m_width = stoi(currentLine); //convert from string to int
+        cout << "Width: " << m_width << endl;
         initializeBoard(m_height,m_width);
       } else {
-        for (int i = 0; i < m_width; ++i) {
-          for (int j = 0; j < m_height; ++j) {
-            if (currentLine == "-") {
-              board[i][j] = 0;
-            } else if (currentLine == "X"){
-              board[i][j] = 1;
-            }
+        for (int j = 0; j < m_width; ++j) {
+          char currentChar = currentLine[j];
+          if (currentChar == 'X') {
+            board[i][j] = 1;
+          } else if (currentChar == '-'){
+            board[i][j] = 0;
           }
         }
+        ++i;
       }
     }
-    lineCount++;
+    ++lineCount;
+  }
+
+  for (int i = 0; i < m_height; ++i) {
+    for (int j = 0; j < m_width; ++j) {
+      cout << board[i][j];
+    }
+    cout << endl;
   }
 }
 
 void GenerateBoard::createRandom(int h, int w, float randDecimal) {
   initializeBoard(h,w);
   int totalBoxes = h * w;
-  int density  = (int)randDecimal * totalBoxes;
+  float temp  = randDecimal * totalBoxes;
+  int density = (int)temp;
   int currentCell = 0;
   int tempCount = 0;
 
-  for (int i = 0; i < w; ++i) {
-    for (int j = 0; j < h; ++j) {
+  for (int i = 0; i < h; ++i) {
+    for (int j = 0; j < w; ++j) {
       if (tempCount < density) {
         currentCell = rand() % 2;
         if (currentCell == 1) {
@@ -117,6 +128,8 @@ void GenerateBoard::createRandom(int h, int w, float randDecimal) {
         currentCell = 0;
       }
       board[i][j] = currentCell;
+      cout << board[i][j];
     }
+    cout << endl;
   }
 }

@@ -31,6 +31,7 @@ GenerateBoard* UserIO::promptForFileOrRandom() {
       cout << "Enter the name of your map.txt file: " << endl;
       cin >> fileName;
       b1->createFromFile(fileName);
+      break;
     } else if (userInput == "random") {
       int height = 0;
       int width = 0;
@@ -44,10 +45,12 @@ GenerateBoard* UserIO::promptForFileOrRandom() {
       cout << "Enter a random number greater than 0 and less than or equal to 1 in decimal form: " << endl;
       cin >> random;
       b1->setDensity(random);
-      b1->createRandom(b1->getHeight(), b1->getWidth(), b1->getDensity());
+      b1->createRandom(height, width, random);
+      break;
+    } else {
+      cout << "Error: please either enter 'file' or 'random'. Try again: " << endl;
+      cin >> userInput;
     }
-    cout << "Error: please either enter 'file' or 'random'. Try again: " << endl;
-    cin >> userInput;
   }
   return b1;
 }

@@ -14,11 +14,53 @@ SimulateGame::~SimulateGame(){
 }
 
 void SimulateGame::play(){
+  //work with mode
   if (m_mode == "1"){
-    ClassicMode* game = new ClassicMode();
+    ClassicMode* game = new ClassicMode(m_board);
+    //call play classic function
+    playClassic(game);
   }else if (m_mode == "2"){
-    MirrorMode* game = new MirrorMode();
+    MirrorMode* game = new MirrorMode(m_board);
+    //call play mirror function
+    playMirror(game);
   }else if (m_mode == "3"){
-    DonutMode* game = new DonutMode();
+    DonutMode* game = new DonutMode(m_board);
+    //call play donut function
+    playDonut(game);
+  }
+
+  //work with play type
+  if (m_playType == "1") {
+    playWithPause();
+  } else if (m_playType == "2") {
+    playWithEnter();
+  } else if (m_playType == "3") {
+    playWithOutputFile();
   }
 }
+
+void SimulateGame::playWithPause() {
+  //do actual game play here
+}
+
+void SimulateGame::playWithEnter() {
+  //do actual game play here
+}
+
+void SimulateGame::playWithOutputFile() {
+  //do actual game play here
+}
+
+void SimulateGame::playClassic(ClassicMode *c) {
+
+}
+
+void SimulateGame::playMirror(MirrorMode *m) {
+
+}
+
+void SimulateGame::playDonut(DonutMode *d) {
+
+}
+
+//make helper methods here

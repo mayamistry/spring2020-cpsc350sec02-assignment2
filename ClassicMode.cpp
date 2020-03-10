@@ -16,7 +16,6 @@ ClassicMode::~ClassicMode(){
 
 void ClassicMode::iterateThroughBoard() {
   //dereference the board to get the 2d array
-  //nothing below this will work right not because m_board isn't recognized for some reason
   int rows = 0;
   rows =  m_classicBoard->getWidth();
   int cols = 0;

@@ -4,7 +4,7 @@
 
 class GameMode {
   public:
-    virtual int countNumMeighbors(int cell){}
-    virtual int nextGenStatus(int numNeighbors){};
+    virtual int countNumMeighbors(int i, int j, int rows, int cols, int** b){}
+    virtual int nextGenStatus(int previousStatus, int numNeighbors){};
 };
 #endif

@@ -40,10 +40,6 @@ void MirrorMode::iterateThroughBoard() {
 }
 
 int MirrorMode::countNumNeighbors(int i, int j, int rows, int cols, int **currentBoard) {
-
-
-
-
   int numNeighbors = 0;
   //special case:corners:
   if (i == 0 || j == 0) {

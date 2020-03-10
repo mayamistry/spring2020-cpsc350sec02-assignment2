@@ -1,7 +1,7 @@
 #include <iostream>
 #include <math.h>
+#include <string>
 #include "SimulateGame.h"
-
 using namespace std;
 
 class UserIO {
