@@ -14,6 +14,6 @@ int main (int argc, char**argv) {
   //The board object, game mode, and play type get put into simulation to start game
   SimulateGame* game = new SimulateGame(userIO->getBoard(), modeInput, playType); //other, //other)
   game->start();
-
+  
   return 0;
 }

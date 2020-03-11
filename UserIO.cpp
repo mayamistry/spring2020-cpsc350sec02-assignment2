@@ -127,14 +127,17 @@ string UserIO::promptForSimulationType() {
   return input;
 }
 
+//getter method to get the GenerateBoard object
 GenerateBoard* UserIO::getBoard() {
   return m_board;
 }
 
+//getter method to get game mode
 string UserIO::getGameMode() {
   return m_modeInput;
 }
 
+//getter method to get play type
 string UserIO::getPlayType(){
   return m_playType;
 }

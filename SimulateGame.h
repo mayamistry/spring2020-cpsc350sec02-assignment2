@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
+//This class takes all of the info from the user and the created board to start the game simulation
 class SimulateGame {
 public:
   SimulateGame();
@@ -29,6 +30,6 @@ public:
   int m_genCount; //counts number of generations
   int m_height;
   int m_width;
-  bool m_isStable;
+  bool m_isStable; //checks if stable to stop the program
   ofstream m_outFS;
 };

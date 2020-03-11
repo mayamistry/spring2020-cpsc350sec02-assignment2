@@ -1,30 +1,31 @@
 #include "MirrorMode.h"
 
+//Default constructor
 MirrorMode::MirrorMode() {
   m_classicBoard = NULL;
   m_board = NULL;
 }
 
+//Overloaded constructor
 MirrorMode::MirrorMode(GenerateBoard *b) {
   m_classicBoard = b;
   m_board = b->getBoard();
 }
 
+//Destructor
 MirrorMode::~MirrorMode(){
   delete m_board;
 }
 
+//Function that returns a new board of values after calculating number of neigbors and new status for each cell
 int** MirrorMode::iterateThroughBoard(GenerateBoard *b, int**current) {
-  //dereference the board to get the 2d array
   const int height = b->getHeight();
   const int width = b->getWidth();
-  //did wrong at first and stored on stack, now stored on heap
+  //create a new 2d array of pointers and put all the new values on future gen board
   int** future = new int* [height];
   for (int i = 0; i < height; ++i){
     future[i] = new int[width];
   }
-
-
   int neighborCount = 0;
   int newCell = 0;
   for (int i = 0; i < height; ++i) {
@@ -38,6 +39,7 @@ int** MirrorMode::iterateThroughBoard(GenerateBoard *b, int**current) {
   return future;
 }
 
+//Helper function to count the neighbors for an individual cell
 int MirrorMode::countNumNeighbors(int i, int j, int rows, int cols, GenerateBoard*b) {
   int**currentBoard = b->getBoard();
   int numNeighbors = 0;
@@ -216,6 +218,7 @@ int MirrorMode::countNumNeighbors(int i, int j, int rows, int cols, GenerateBoar
   return numNeighbors;
 }
 
+//Helper function to see what the status is for cell in the next generation 
 int MirrorMode::nextGenStatus(int previousStatus, int numNeighbors) {
   int newCell = 0;
   if (numNeighbors <= 1) {

@@ -1,5 +1,6 @@
 #include "GameMode.h"
 
+//Donut mode - inherited from GameMode
 class DonutMode : public GameMode{
   public:
     DonutMode();

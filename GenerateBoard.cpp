@@ -21,38 +21,47 @@ GenerateBoard::GenerateBoard(int h, int w, float d) {
 //   m_density = &b->getDensity();
 // }
 
+//Default constructor
 GenerateBoard::~GenerateBoard() {
    delete board;
 }
 
+//Setter method for height of board
 void GenerateBoard::setHeight(int h) {
   m_height = h;
 }
 
+//Setter method for width of board
 void GenerateBoard::setWidth(int w) {
   m_width = w;
 }
 
+//Getter method for height of board
 int GenerateBoard::getHeight() {
   return m_height;
 }
 
+//Getter method for width of board
 int GenerateBoard::getWidth() {
   return m_width;
 }
 
+//Setter method for density of board
 void GenerateBoard::setDensity(float d) {
   m_density = d;
 }
 
+//Getter method for density of board
 float GenerateBoard::getDensity() {
   return m_density;
 }
 
+//Getter method for the 2D array
 int** GenerateBoard::getBoard(){
   return board;
 }
 
+//board to initialize the 2D array pointer
 void GenerateBoard::initializeBoard(int h, int w) {
   board = new int*[h];
   for (int i = 0; i < h; ++i) {
@@ -60,6 +69,7 @@ void GenerateBoard::initializeBoard(int h, int w) {
   }
 }
 
+//Function to create a board using a map file that the user provides
 void GenerateBoard::createFromFile(string fileName) {
   ifstream inFS;
   string currentLine = "";
@@ -103,6 +113,7 @@ void GenerateBoard::createFromFile(string fileName) {
   inFS.close();
 }
 
+//Function to create a random board using values that users provide
 void GenerateBoard::createRandom(int h, int w, float randDecimal) {
   initializeBoard(h,w);
   int totalBoxes = h * w;
@@ -110,7 +121,6 @@ void GenerateBoard::createRandom(int h, int w, float randDecimal) {
   int density = (int)temp;
   int currentCell = 0;
   int tempCount = 0;
-
   for (int i = 0; i < h; ++i) {
     for (int j = 0; j < w; ++j) {
       if (tempCount < density) {

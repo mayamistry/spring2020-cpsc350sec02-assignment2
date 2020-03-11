@@ -4,6 +4,7 @@
 #include "SimulateGame.h"
 using namespace std;
 
+//Class where all of the UserIO occurs and stores whatever information is inputted by the user
 class UserIO {
   public:
     UserIO();

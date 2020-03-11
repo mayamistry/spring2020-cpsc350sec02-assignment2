@@ -1,17 +1,21 @@
 #include "ClassicMode.h"
 
+//Default constructor
 ClassicMode::ClassicMode() {
   m_classicBoard = NULL;
 }
 
+//Overloaded constructor
 ClassicMode::ClassicMode(GenerateBoard *b) {
   m_classicBoard = b;
 }
 
+//Constructor
 ClassicMode::~ClassicMode(){
   delete m_classicBoard;
 }
 
+//Function that returns a new board of values after calculating number of neigbors and new status for each cell
 int ** ClassicMode::iterateThroughBoard(GenerateBoard *b, int**current) {
   //dereference the board to get the 2d array
   const int height = b->getHeight();
@@ -21,8 +25,6 @@ int ** ClassicMode::iterateThroughBoard(GenerateBoard *b, int**current) {
   for (int i = 0; i < height; ++i){
     future[i] = new int[width];
   }
-
-
   int neighborCount = 0;
   int newCell = 0;
   for (int i = 0; i < height; ++i) {
@@ -36,6 +38,7 @@ int ** ClassicMode::iterateThroughBoard(GenerateBoard *b, int**current) {
   return future;
 }
 
+//Helper function to count the neighbors for an individual cell
 int ClassicMode::countNumNeighbors(int i, int j, int rows, int cols, GenerateBoard *b) {
   int **currentBoard = b->getBoard();
   int numNeighbors = 0;
@@ -190,6 +193,7 @@ int ClassicMode::countNumNeighbors(int i, int j, int rows, int cols, GenerateBoa
   return numNeighbors;
 }
 
+//Helper function to see what the status is for cell in the next generation
 int ClassicMode::nextGenStatus(int previousStatus, int numNeighbors) {
   int newCell = 0;
   if (numNeighbors <= 1) {

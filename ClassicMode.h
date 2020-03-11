@@ -1,5 +1,6 @@
 #include "GameMode.h"
 
+////Classic mode - inherited from GameMode
 class ClassicMode : public GameMode{
   public:
     ClassicMode();

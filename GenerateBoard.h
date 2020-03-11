@@ -3,6 +3,7 @@
 #include "math.h"
 using namespace std;
 
+//Class to generate the board depending on what the user decides to choose (file or random)
 class GenerateBoard {
   public:
     GenerateBoard(); //default

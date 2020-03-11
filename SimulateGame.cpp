@@ -1,11 +1,14 @@
 #include "SimulateGame.h"
 
+//Default constructor
 SimulateGame::SimulateGame() {
   m_board = NULL;
   m_mode = "";
   m_genCount = 1;
   m_isStable = false;
 }
+
+//Overloaded constructor
 SimulateGame::SimulateGame(GenerateBoard *b, string mode, string playType){
   m_board = b;
   m_mode = mode;
@@ -17,10 +20,13 @@ SimulateGame::SimulateGame(GenerateBoard *b, string mode, string playType){
   m_futureBoard = NULL;
   m_isStable = false;
 }
+
+//Destructor
 SimulateGame::~SimulateGame(){
   delete m_board;
 }
 
+//kmethod to actually start the game using the mode and play type the user chooses
 void SimulateGame::start(){
   if (m_mode == "1"){
     ClassicMode* game = new ClassicMode(m_board);
@@ -37,6 +43,7 @@ void SimulateGame::start(){
   }
 }
 
+//method used if player chooses classic mode
 void SimulateGame::playClassic(ClassicMode *c, string playType) {
   //play
   //first print what genertation 0 is
@@ -65,7 +72,6 @@ void SimulateGame::playClassic(ClassicMode *c, string playType) {
         }
       }
       if (m_isStable == true) {
-        //if file, output to file
         cout << "Stabilized (current generation board and future genertation board equal each other)" << endl;
         cout << "End of game" << endl;
         break;
@@ -152,6 +158,7 @@ void SimulateGame::playClassic(ClassicMode *c, string playType) {
   }
 }
 
+//method used if player chooses mirror mode
 void SimulateGame::playMirror(MirrorMode *m, string playType) {
   //play
   //first print what genertation 0 is
@@ -267,6 +274,7 @@ void SimulateGame::playMirror(MirrorMode *m, string playType) {
   }
 }
 
+//method used if player chooses donut mode
 void SimulateGame::playDonut(DonutMode *d, string playType) {
   //play
   //first print what genertation 0 is
@@ -382,6 +390,7 @@ void SimulateGame::playDonut(DonutMode *d, string playType) {
   }
 }
 
+//method to print boards from the game to the console
 void SimulateGame::printBoardToConsole(int**array, int h, int w) {
   for (int i = 0; i < h; ++i) {
     for (int j = 0; j < w; ++j) {
@@ -396,6 +405,7 @@ void SimulateGame::printBoardToConsole(int**array, int h, int w) {
   }
 }
 
+//method to print boards from the game to the output file of the users choice
 void SimulateGame::printToOutputFile(int**array, int h, int w) {
   for (int i = 0; i < h; ++i) {
     for (int j = 0; j < w; ++j) {

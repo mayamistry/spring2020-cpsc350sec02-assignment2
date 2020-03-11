@@ -1,19 +1,23 @@
 #include "DonutMode.h"
 
+//Default constructor
 DonutMode::DonutMode() {
   m_classicBoard = NULL;
   m_board = NULL;
 }
 
+//Overloaded constructor
 DonutMode::DonutMode(GenerateBoard *b) {
   m_classicBoard = b;
   m_board = b->getBoard();
 }
 
+//Destructor
 DonutMode::~DonutMode(){
   delete m_board;
 }
 
+//Function that returns a new board of values after calculating number of neigbors and new status for each cell
 int** DonutMode::iterateThroughBoard(GenerateBoard *b, int**current) {
   //dereference the board to get the 2d array
   const int height = b->getHeight();
@@ -36,6 +40,7 @@ int** DonutMode::iterateThroughBoard(GenerateBoard *b, int**current) {
   return future;
 }
 
+//Helper function to count the neighbors for an individual cell
 int DonutMode::countNumNeighbors(int i, int j, int rows, int cols, GenerateBoard*b) {
   int**currentBoard = b->getBoard();
   int numNeighbors = 0;
@@ -285,6 +290,7 @@ int DonutMode::countNumNeighbors(int i, int j, int rows, int cols, GenerateBoard
   return numNeighbors;
 }
 
+//Helper function to see what the status is for cell in the next generation
 int DonutMode::nextGenStatus(int previousStatus, int numNeighbors) {
   int newCell = 0;
   if (numNeighbors <= 1) {
