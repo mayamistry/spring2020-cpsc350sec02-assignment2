@@ -12,7 +12,7 @@ int main (int argc, char**argv) {
   //Simulate game
   //Make simulation object
   SimulateGame* game = new SimulateGame(userIO->getBoard(), modeInput, playType); //other, //other)
-  game->play();
+  game->start();
 
   return 0;
 }

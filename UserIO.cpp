@@ -69,7 +69,7 @@ string UserIO::promptBoundary() {
 
   //3. Ask user if they want a brief pause, want to press enter, or output everything to an output file
 string UserIO::promptForSimulationType() {
-  cout << "Choose if you want to simulate using a pause (Enter '1'), pressing enter (Enter '2'), or output everyhting to a file ('Enter '3'): " << endl;
+  cout << "Choose if you want to simulate using a pause (Enter '1'), pressing enter (Enter '2'), or output everything to a file ('Enter '3'): " << endl;
   //do error handling
   string input = "";
   cin >> input;

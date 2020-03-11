@@ -12,11 +12,10 @@ ClassicMode::~ClassicMode(){
   delete m_classicBoard;
 }
 
-int ** ClassicMode::iterateThroughBoard(GenerateBoard *b) {
+int ** ClassicMode::iterateThroughBoard(GenerateBoard *b, int**current) {
   //dereference the board to get the 2d array
   const int height = b->getHeight();
   const int width = b->getWidth();
-  int **current = b->getBoard();
   //did wrong at first and stored on stack, now stored on heap
   int** future = new int* [height];
   for (int i = 0; i < height; ++i){
@@ -34,30 +33,6 @@ int ** ClassicMode::iterateThroughBoard(GenerateBoard *b) {
       future[i][j] = newCell;
     }
   }
-
-  // current = m_classicBoard->getBoard();
-
-  // // current = m_classicBoard->getBoard(); //SEGMENTATION FAULT OCCURS HERE
-  // for (int i = 0; i < rows; ++i) {
-  //   for (int j = 0; j < cols; ++j) {
-  //     current
-  //   }
-  // }
-  //
-
-
-  // int newCell = 0;
-  // int value = 0;
-  // int neighborCount = 0;
-  // for (int i = 0; i < rows; ++i) {
-  //   for (int j = 0; j < cols; ++j) {
-  //     current[i][j] = value;
-  //     cout << value << endl;
-  //     neighborCount = countNumNeighbors(i, j, rows, cols, b);
-  //     newCell = nextGenStatus(value, neighborCount);
-  //     // future[i][j] = newCell;
-  //   }
-  // }
   return future;
 }
 

@@ -5,12 +5,12 @@ class MirrorMode : public GameMode{
     MirrorMode();
     MirrorMode(GenerateBoard *b);
     ~MirrorMode();
-    int countNumNeighbors(int i, int j, int rows, int cols, int** b);
+    int countNumNeighbors(int i, int j, int rows, int cols, GenerateBoard *b);
     int nextGenStatus(int previousStatus, int numNeighbors);
 
     //helper functions
-    void iterateThroughBoard();
-    //other extra methods for donut
+    int ** iterateThroughBoard(GenerateBoard *b, int**current);
+
 
     GenerateBoard *m_classicBoard;
     int **m_board;

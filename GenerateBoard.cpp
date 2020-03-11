@@ -100,6 +100,7 @@ void GenerateBoard::createFromFile(string fileName) {
     }
     ++lineCount;
   }
+  inFS.close();
 }
 
 void GenerateBoard::createRandom(int h, int w, float randDecimal) {
@@ -121,8 +122,6 @@ void GenerateBoard::createRandom(int h, int w, float randDecimal) {
         currentCell = 0;
       }
       board[i][j] = currentCell;
-      cout << board[i][j];
     }
-    cout << endl;
   }
 }

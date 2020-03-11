@@ -1,6 +1,9 @@
 #include "ClassicMode.h"
 #include "DonutMode.h"
 #include "MirrorMode.h"
+#include <fstream> //to output boards to the file
+#include <unistd.h>
+#include <stdio.h>
 
 class SimulateGame {
 public:
@@ -8,18 +11,15 @@ public:
   SimulateGame(GenerateBoard *b, string mode, string playType);
   ~SimulateGame();
 
-  void play();
+  void start();
 
-  void playWithPause();
-  void playWithEnter();
-  void playWithOutputFile();
-
-  void playClassic(ClassicMode *c);
-  void playMirror(MirrorMode *m);
-  void playDonut(DonutMode *d);
+  void playClassic(ClassicMode *c, string playType);
+  void playMirror(MirrorMode *m, string playType);
+  void playDonut(DonutMode *d, string playType);
 
   //add other helper methods here
-  void printBoard(int**array, int h, int w);
+  void printBoardToConsole(int**array, int h, int w);
+  void printToOutputFile(int**array, int h, int w);
 
   GenerateBoard* m_board;
   int **m_mainBoard; //main board to show current generations
@@ -29,4 +29,6 @@ public:
   int m_genCount; //counts number of generations
   int m_height;
   int m_width;
+  bool m_isStable;
+  ofstream m_outFS;
 };
