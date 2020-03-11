@@ -11,5 +11,7 @@ https://stackoverflow.com/questions/21579696/random-number-either-0-or-1
 https://stackoverflow.com/questions/8617683/return-a-2d-array-from-a-function
 http://www.cplusplus.com/doc/tutorial/polymorphism/
 https://stackoverflow.com/questions/4184468/sleep-for-milliseconds
+http://www.cplusplus.com/reference/thread/this_thread/sleep_for/
+https://www.poftut.com/what-is-sleep-function-and-how-to-use-it-in-c-program/
 
 Note: we worked together in person for the whole project on one computer, so the user mayamistry is the only one who pushed.
