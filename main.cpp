@@ -2,6 +2,7 @@
 #include "UserIO.h"
 using namespace std;
 
+//main method is where we implemenet userIO which then connects all info to start the actual game
 int main (int argc, char**argv) {
   UserIO *userIO = new UserIO();
   userIO->start();
@@ -10,7 +11,7 @@ int main (int argc, char**argv) {
   string playType = userIO->getPlayType();
 
   //Simulate game
-  //Make simulation object
+  //The board object, game mode, and play type get put into simulation to start game
   SimulateGame* game = new SimulateGame(userIO->getBoard(), modeInput, playType); //other, //other)
   game->start();
 
